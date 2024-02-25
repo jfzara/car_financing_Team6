@@ -18,6 +18,8 @@ public class FormInscription extends JFrame {
     private JLabel investorRiskLevelLabel;
     private JLabel investorEducationLevelLabel;
 
+    private JLabel userDetailsLabel;
+
     public FormInscription() {
         setTitle("Formulaire d'Inscription");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +29,7 @@ public class FormInscription extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         JPanel formPanel = new JPanel(new GridLayout(0, 2));
-        userTypeComboBox = new JComboBox<>(new String[]{"Client", "Investisseur"});
+        userTypeComboBox = new JComboBox<>(new String[]{"", "Client", "Investisseur"}); // Option vide ajoutée
         formPanel.add(new JLabel("Type d'utilisateur:"));
         formPanel.add(userTypeComboBox);
 
@@ -55,83 +57,57 @@ public class FormInscription extends JFrame {
         investorRiskLevelLabel = new JLabel("Niveau de risque:");
         investorEducationLevelLabel = new JLabel("Niveau d'éducation:");
 
-        // Ajout des champs spécifiques pour Client et Investisseur
+        // Ajout des champs spécifiques pour Client et Investisseur avec la désactivation initiale
         formPanel.add(creditScoreLabel);
         textFields[3] = new JTextField();
         formPanel.add(textFields[3]);
+        textFields[3].setEnabled(false); // Désactivé initialement
 
         formPanel.add(birthDateLabel);
         textFields[4] = new JTextField();
         formPanel.add(textFields[4]);
+        textFields[4].setEnabled(false); // Désactivé initialement
 
         formPanel.add(maritalStatusLabel);
         textFields[5] = new JTextField();
         formPanel.add(textFields[5]);
+        textFields[5].setEnabled(false); // Désactivé initialement
 
         formPanel.add(yearsInCanadaLabel);
         textFields[6] = new JTextField();
         formPanel.add(textFields[6]);
+        textFields[6].setEnabled(false); // Désactivé initialement
 
         formPanel.add(bankNameLabel);
         textFields[7] = new JTextField();
         formPanel.add(textFields[7]);
+        textFields[7].setEnabled(false); // Désactivé initialement
 
         formPanel.add(bankAccountDetailsLabel);
         textFields[8] = new JTextField();
         formPanel.add(textFields[8]);
+        textFields[8].setEnabled(false); // Désactivé initialement
 
         formPanel.add(investorRiskLevelLabel);
         textFields[9] = new JTextField();
         formPanel.add(textFields[9]);
+        textFields[9].setEnabled(false); // Désactivé initialement
 
         formPanel.add(investorEducationLevelLabel);
         textFields[10] = new JTextField();
         formPanel.add(textFields[10]);
+        textFields[10].setEnabled(false); // Désactivé initialement
 
         mainPanel.add(formPanel, BorderLayout.CENTER);
         add(mainPanel);
 
+        userDetailsLabel = new JLabel();
+        mainPanel.add(userDetailsLabel, BorderLayout.NORTH);
+
         submitButton = new JButton("S'inscrire");
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String password = textFields[2].getText();
-
-
-                if (!validatePassword(password)) {
-                    JOptionPane.showMessageDialog(FormInscription.this, "Le mot de passe doit contenir au moins 8 caractères, incluant au moins un chiffre et un caractère spécial.");
-                    return;
-                }
-
-
-                String fullName = textFields[0].getText();
-                String email = textFields[1].getText();
-
-
-
-                if (userTypeComboBox.getSelectedItem().equals("Client")) {
-
-                    int creditScore = Integer.parseInt(textFields[3].getText());
-                    String birthDate = textFields[4].getText();
-                    String maritalStatus = textFields[5].getText();
-                    String yearsInCanada = textFields[6].getText();
-
-                    Client client = new Client(fullName, email, password, "", "", "",
-                            creditScore, birthDate, maritalStatus, yearsInCanada);
-
-                } else if (userTypeComboBox.getSelectedItem().equals("Investisseur")) {
-
-                    String bankName = textFields[7].getText();
-                    String bankAccountDetails = textFields[8].getText();
-                    String investorRiskLevel = textFields[9].getText();
-                    String investorEducationLevel = textFields[10].getText();
-
-                    Investisseur investisseur = new Investisseur(fullName, email, password, "", bankName, bankAccountDetails,
-                            investorRiskLevel, investorEducationLevel);
-
-                }
-
-
-                JOptionPane.showMessageDialog(FormInscription.this, "Inscription réussie !");
+                // Ajoutez votre logique de bouton ici
             }
         });
         mainPanel.add(submitButton, BorderLayout.SOUTH);
