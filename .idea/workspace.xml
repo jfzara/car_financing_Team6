@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Formulaire amélioré: champs inutiles disabled selon type de User">
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Champ combo box vide par défaut">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FormInscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FormInscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Investisseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Investisseur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708847435133</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Champ combo box vide par défaut">
+      <created>1708850328961</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708850328961</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +138,7 @@
     <MESSAGE value="Création de la classe User dans la branche Formulaire(typo)." />
     <MESSAGE value="Création de la classe Client dans la branche Formulaire." />
     <MESSAGE value="Formulaire amélioré: champs inutiles disabled selon type de User" />
-    <option name="LAST_COMMIT_MESSAGE" value="Formulaire amélioré: champs inutiles disabled selon type de User" />
+    <MESSAGE value="Champ combo box vide par défaut" />
+    <option name="LAST_COMMIT_MESSAGE" value="Champ combo box vide par défaut" />
   </component>
 </project>

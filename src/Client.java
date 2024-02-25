@@ -58,4 +58,18 @@ class Client {
     public void setYearsInCanada(String yearsInCanada) {
         this.yearsInCanada = yearsInCanada;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", creditScore=" + creditScore +
+                ", birthDate='" + birthDate + '\'' +
+                ", maritalStatus='" + maritalStatus + '\'' +
+                ", yearsInCanada='" + yearsInCanada + '\'' +
+                '}';
+    }
 }

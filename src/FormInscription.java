@@ -107,9 +107,63 @@ public class FormInscription extends JFrame {
         submitButton = new JButton("S'inscrire");
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Ajoutez votre logique de bouton ici
+                String password = textFields[2].getText();
+
+                if (!validatePassword(password)) {
+                    JOptionPane.showMessageDialog(FormInscription.this, "Le mot de passe" +
+                            " doit contenir au moins 8 caractères, " +
+                            "incluant au moins un chiffre et un caractère spécial.");
+                    return;
+                }
+
+                String fullName = textFields[0].getText();
+                String email = textFields[1].getText();
+                String userType = (String) userTypeComboBox.getSelectedItem();
+
+                if (userType.equals("Client")) {
+                    String creditScoreText = textFields[3].getText();
+                    try {
+                        int creditScore = Integer.parseInt(creditScoreText);
+                        String birthDate = textFields[4].getText();
+                        String maritalStatus = textFields[5].getText();
+                        String yearsInCanada = textFields[6].getText();
+
+                        // Créer un objet Client
+                        Client client = new Client(fullName, email, password, "", "", "",
+                                creditScore, birthDate, maritalStatus, yearsInCanada);
+                        // Afficher les informations du client dans la console
+                        System.out.println(client.toString());
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(FormInscription.this, "Veuillez saisir un nombre valide pour le score de crédit.");
+                        return;
+                    }
+                } else if (userType.equals("Investisseur")) {
+                    String bankName = textFields[7].getText();
+                    String bankAccountDetails = textFields[8].getText();
+                    String investorRiskLevel = textFields[9].getText();
+                    String investorEducationLevel = textFields[10].getText();
+
+                    // Créer un objet Investisseur
+                    Investisseur investisseur = new Investisseur(fullName, email, password, "", bankName, bankAccountDetails,
+                            investorRiskLevel, investorEducationLevel);
+                    // Afficher les informations de l'investisseur dans la console
+                    System.out.println(investisseur.toString());
+                }
+
+                JOptionPane.showMessageDialog(FormInscription.this, "Inscription réussie !");
             }
         });
+        mainPanel.add(submitButton, BorderLayout.SOUTH);
+
+        setVisible(true);
+
+        // Ajout d'un écouteur d'événements pour le changement de sélection dans la liste déroulante
+        userTypeComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateFormFields();
+            }
+        });
+
         mainPanel.add(submitButton, BorderLayout.SOUTH);
 
         setVisible(true);
