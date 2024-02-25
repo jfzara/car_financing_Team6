@@ -1,24 +1,28 @@
-// Classe Investisseur
-public class Investisseur extends User {
-    // Nouveaux champs spécifiques aux investisseurs
+
+class Investisseur {
+    private String fullName;
+    private String email;
+    private String password;
+    private String phoneNumber;
     private String bankName;
     private String bankAccountDetails;
     private String investorRiskLevel;
     private String investorEducationLevel;
 
-    // Constructeur pour les investisseurs
+
     public Investisseur(String fullName, String email, String password, String phoneNumber, String bankName, String bankAccountDetails,
                         String investorRiskLevel, String investorEducationLevel) {
-        // Appel du constructeur de la classe User
-        super(fullName, email, password, phoneNumber, "", ""); // Occupation et revenu annuel non requis pour les investisseurs
-        // Initialisation des nouveaux champs spécifiques aux investisseurs
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
         this.bankName = bankName;
         this.bankAccountDetails = bankAccountDetails;
         this.investorRiskLevel = investorRiskLevel;
         this.investorEducationLevel = investorEducationLevel;
     }
 
-    // Getters et setters pour les nouveaux champs
+
     public String getBankName() {
         return bankName;
     }
