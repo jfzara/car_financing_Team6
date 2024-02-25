@@ -54,4 +54,18 @@ class Investisseur {
     public void setInvestorEducationLevel(String investorEducationLevel) {
         this.investorEducationLevel = investorEducationLevel;
     }
+
+    // Méthode toString pour obtenir une représentation textuelle de l'investisseur
+    @Override
+    public String toString() {
+        return "Investisseur{" +
+                "Nom complet='" + fullName + '\'' +
+                ", Email='" + email + '\'' +
+                ", Numéro de téléphone='" + phoneNumber + '\'' +
+                ", Nom de la banque='" + bankName + '\'' +
+                ", Détails du compte bancaire='" + bankAccountDetails + '\'' +
+                ", Niveau de risque='" + investorRiskLevel + '\'' +
+                ", Niveau d'éducation='" + investorEducationLevel + '\'' +
+                '}';
+    }
 }
