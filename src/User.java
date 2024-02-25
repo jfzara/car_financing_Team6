@@ -1,14 +1,10 @@
 public class User {
-    //Nom complet, adresse électronique, mot de passe, numéro de
-    //téléphone, informations sur l'emploi, revenu annuel.
     private String userFullName;
     private String userEmail;
     private String userPassword;
     private String userPhoneNumber;
     private String userOccupation;
     private String userYearlyIncome;
-
-    // Constructeur.
 
     public User(String userFullName, String userEmail, String userPassword, String userPhoneNumber, String userOccupation, String userYearlyIncome) {
         this.userFullName = userFullName;
@@ -18,8 +14,6 @@ public class User {
         this.userOccupation = userOccupation;
         this.userYearlyIncome = userYearlyIncome;
     }
-
-    //Getter and setter methods (Refactor).
 
     public String getUserFullName() {
         return userFullName;
@@ -69,13 +63,6 @@ public class User {
         this.userYearlyIncome = userYearlyIncome;
     }
 
-
-
-
-
-    // Méthode toString pour afficher les informations de l'utilisateur
-    //Nom complet, adresse électronique, mot de passe, numéro de
-    //téléphone, informations sur l'emploi, revenu annuel.
     public String toString() {
         return "User{" +
                 "userFullName='" + userFullName + '\'' +
@@ -86,6 +73,4 @@ public class User {
                 ", userYearlyIncome='" + userYearlyIncome + '\'' +
                 '}';
     }
-}
-
 }
