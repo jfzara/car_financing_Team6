@@ -8,19 +8,11 @@ public class FormInscription extends JFrame {
     private JTextField[] textFields;
     private JButton submitButton;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Formulaire
     private JLabel creditScoreLabel;
     private JLabel birthDateLabel;
     private JLabel maritalStatusLabel;
     private JLabel yearsInCanadaLabel;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Formulaire
     private JLabel bankNameLabel;
     private JLabel bankAccountDetailsLabel;
     private JLabel investorRiskLevelLabel;
@@ -145,7 +137,6 @@ public class FormInscription extends JFrame {
         mainPanel.add(submitButton, BorderLayout.SOUTH);
 
         setVisible(true);
-<<<<<<< HEAD
 
         // Ajout d'un écouteur d'événements pour le changement de sélection dans la liste déroulante
         userTypeComboBox.addActionListener(new ActionListener() {
@@ -182,12 +173,6 @@ public class FormInscription extends JFrame {
     }
 
     private boolean validatePassword(String password) {
-=======
-    }
-
-    private boolean validatePassword(String password) {
-
->>>>>>> origin/Formulaire
         return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[^a-zA-Z0-9\\s].*");
     }
 
