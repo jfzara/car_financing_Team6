@@ -35,9 +35,15 @@ public class PagePrincipale {
             }
         });
         panel.add(boutonInscription);
-
-        // Création et ajout du bouton de connexion
+        // Création et ajout du bouton connexion
         JButton boutonConnexion = creerBouton("Connexion");
+        boutonConnexion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Affichage de la fenêtre de connexion
+                new FormConnexion().setVisible(true);
+            }
+        });
         panel.add(boutonConnexion);
 
         // Ajout du panel à la fenêtre principale et affichage
