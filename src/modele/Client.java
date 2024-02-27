@@ -1,4 +1,6 @@
-class Client {
+package modele;
+
+public class Client {
     private String fullName;
     private String email;
     private String password;

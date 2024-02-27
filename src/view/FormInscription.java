@@ -1,3 +1,7 @@
+
+package view;
+import modele.Client;
+import modele.Investisseur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

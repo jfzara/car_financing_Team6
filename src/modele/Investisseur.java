@@ -1,4 +1,5 @@
-class Investisseur {
+package modele;
+public class Investisseur {
     private String fullName;
     private String email;
     private String password;

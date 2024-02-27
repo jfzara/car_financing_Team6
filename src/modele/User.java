@@ -1,3 +1,5 @@
+
+package modele;
 public class User {
     private String userFullName;
     private String userEmail;
