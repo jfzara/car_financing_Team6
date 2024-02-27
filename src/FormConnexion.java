@@ -45,30 +45,33 @@ public class FormConnexion extends JFrame {
             }
         });
 
-        pack(); // Ajuste la taille de la fenêtre en fonction des composants
+        pack();
     }
 
     private void login() {
-        // Récupération du email et du mot de passe saisis par l'utilisateur
+        // Récupération de l'email et du mot de passe saisis par l'utilisateur
         String email = emailField.getText();
         String password = new String(passwordField.getPassword());
 
-        // Validation des entrées : vérifie si l'un des champs est vide
+        // Validation des entrées
         if (email.trim().isEmpty() || password.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-
         if (email.equals("test@example.com") && password.equals("password")) {
+            // Affichage de la réussite de la connexion
+            JOptionPane.showMessageDialog(this, "Connexion réussie!", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
-            JOptionPane.showMessageDialog(this, "Connexion réussie!");
+            // Affichage de l'email et du mot de passe après une connexion réussie
+            JOptionPane.showMessageDialog(this, "Email: " + email + "\nMot de passe: " + password, "Informations saisies", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
-
+            // Affichage d'une erreur si les identifiants sont incorrects
             JOptionPane.showMessageDialog(this, "Échec de la connexion. Veuillez vérifier vos identifiants.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     public static void main(String[] args) {
         new FormConnexion().setVisible(true);
