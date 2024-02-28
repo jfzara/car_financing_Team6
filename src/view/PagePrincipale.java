@@ -78,7 +78,7 @@ public class PagePrincipale {
             backgroundImage = new ImageIcon(imagePath).getImage(); // Chargement de l'image
         }
 
-
+// methode paintComponent
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
