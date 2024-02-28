@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Champ combo box vide par défaut">
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Création d'une représentation textuelle de chaque objet &quot;Client&quot; ou &quot;Investisseur&quot; = fonctionnel">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car_financing_Team6.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/Client.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormConnexion$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormConnexion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormInscription$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormInscription$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormInscription$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormInscription$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/FormInscription.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/Investisseur.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/PagePrincipale$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/PagePrincipale$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/PagePrincipale$Panel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/PagePrincipale.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/car_financing_Team6/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/photo/voiture.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/photo/voiture1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FormConnexion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PagePrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FormInscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FormInscription.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Investisseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Investisseur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
