@@ -41,24 +41,44 @@ public class FormConnexion extends JFrame {
         String email = emailField.getText();
         String password = new String(passwordField.getPassword());
 
+
+        System.out.println("Tentative de connexion pour l'email: " + email);
+
         try {
             Client client = PostgresSQLConfig.getClientByEmail(email);
             if (client != null) {
-                String hashedInputPassword = PasswordHashing.get_SHA_256_SecurePassword(password, client.getSalt());
+
+                System.out.println("Utilisateur trouvé dans la base de données.");
+
+                byte[] salt = client.getSalt();
+                String hashedInputPassword = PasswordHashing.get_SHA_256_SecurePassword(password, salt);
+
+
+                System.out.println("Hash du mot de passe saisi: " + hashedInputPassword);
+                System.out.println("Hash du mot de passe attendu: " + client.getPassword());
 
                 if (client.getPassword().equals(hashedInputPassword)) {
                     JOptionPane.showMessageDialog(this, "Connexion réussie !", "Succès", JOptionPane.INFORMATION_MESSAGE);
                 } else {
+
+                    System.out.println("Échec de la correspondance des mots de passe.");
                     JOptionPane.showMessageDialog(this, "E-mail ou mot de passe incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
+
+                System.out.println("Aucun utilisateur trouvé pour cet e-mail.");
                 JOptionPane.showMessageDialog(this, "E-mail ou mot de passe incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
+
+            System.err.println("Erreur SQL: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("ErrorCode: " + ex.getErrorCode());
             JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données.", "Erreur", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
+
 
 
 }
