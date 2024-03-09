@@ -1,8 +1,8 @@
 package view;
 
-import java.security.SecureRandom;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.nio.charset.StandardCharsets;
 
 public class PasswordHashing {
@@ -17,12 +17,11 @@ public class PasswordHashing {
                 sb.append(String.format("%02x", b));
             }
             return sb.toString();
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;
         }
     }
-
 
     public static byte[] getSalt() {
         SecureRandom sr = new SecureRandom();
@@ -31,4 +30,3 @@ public class PasswordHashing {
         return salt;
     }
 }
-

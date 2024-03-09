@@ -1,15 +1,18 @@
 package view;
+import java.sql.SQLException;
 
-import modele.Client;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.sql.SQLException;
-import java.nio.charset.StandardCharsets;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Base64;
+import view.PasswordHashing;
 public class FormConnexion extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
+    private JButton loginButton;
 
     public FormConnexion() {
         initializeUI();
@@ -17,69 +20,54 @@ public class FormConnexion extends JFrame {
 
     private void initializeUI() {
         setTitle("Connexion");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 150);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel mainPanel = new JPanel(new GridLayout(3, 2));
-        mainPanel.add(new JLabel("E-mail:"));
+        JPanel panel = new JPanel(new GridLayout(3, 2));
+        panel.add(new JLabel("E-mail:"));
         emailField = new JTextField();
-        mainPanel.add(emailField);
-        mainPanel.add(new JLabel("Mot de passe:"));
+        panel.add(emailField);
+
+        panel.add(new JLabel("Mot de passe:"));
         passwordField = new JPasswordField();
-        mainPanel.add(passwordField);
+        panel.add(passwordField);
 
-        JButton loginButton = new JButton("Se connecter");
+        loginButton = new JButton("Se connecter");
         loginButton.addActionListener(this::login);
-        mainPanel.add(loginButton);
+        panel.add(loginButton);
 
-        add(mainPanel);
+        add(panel);
+        pack();
         setVisible(true);
     }
 
     private void login(ActionEvent e) {
-        String email = emailField.getText();
-        String password = new String(passwordField.getPassword());
+        try (Connection conn = PostgresSQLConfig.connect()) {
+            String query = "SELECT email, password_hash, salt FROM clients WHERE email = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, emailField.getText());
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String storedHash = rs.getString("password_hash");
+                        byte[] salt = Base64.getDecoder().decode(rs.getString("salt"));
+                        String inputHash = PasswordHashing.get_SHA_256_SecurePassword(new String(passwordField.getPassword()), salt);
 
-
-        System.out.println("Tentative de connexion pour l'email: " + email);
-
-        try {
-            Client client = PostgresSQLConfig.getClientByEmail(email);
-            if (client != null) {
-
-                System.out.println("Utilisateur trouvé dans la base de données.");
-
-                byte[] salt = client.getSalt();
-                String hashedInputPassword = PasswordHashing.get_SHA_256_SecurePassword(password, salt);
-
-
-                System.out.println("Hash du mot de passe saisi: " + hashedInputPassword);
-                System.out.println("Hash du mot de passe attendu: " + client.getPassword());
-
-                if (client.getPassword().equals(hashedInputPassword)) {
-                    JOptionPane.showMessageDialog(this, "Connexion réussie !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-
-                    System.out.println("Échec de la correspondance des mots de passe.");
-                    JOptionPane.showMessageDialog(this, "E-mail ou mot de passe incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        if (storedHash.equals(inputHash)) {
+                            JOptionPane.showMessageDialog(this, "Connexion réussie !");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Email ou mot de passe incorrect.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Utilisateur introuvable.");
+                    }
                 }
-            } else {
-
-                System.out.println("Aucun utilisateur trouvé pour cet e-mail.");
-                JOptionPane.showMessageDialog(this, "E-mail ou mot de passe incorrect.", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-
-            System.err.println("Erreur SQL: " + ex.getMessage());
-            System.err.println("SQLState: " + ex.getSQLState());
-            System.err.println("ErrorCode: " + ex.getErrorCode());
-            JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données.", "Erreur", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erreur de connexion à la base de données.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
 
 }
 

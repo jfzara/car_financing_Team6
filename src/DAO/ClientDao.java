@@ -1,6 +1,6 @@
 package DAO;
 import modele.Client;
-import com.logic.util.ConnectionUtil;
+
 import modele.Investisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

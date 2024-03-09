@@ -57,7 +57,7 @@ public class PostgresSQLConfig {
             pstmt.setString(1, email);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    byte[] salt = rs.getBytes("salt");
+                    byte[] salt = rs.getBytes("salt"); // Assurez-vous que cette colonne existe dans votre DB
                     String passwordHash = rs.getString("password_hash");
 
                     return new Client(null, email, passwordHash, null, null, null, 0, null, null, null, salt);

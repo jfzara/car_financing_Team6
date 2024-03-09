@@ -1,3 +1,4 @@
+
 package com.logic.util;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Properties;
 
 public class ConnectionUtil {
 
-    private static Connection conn = null;
+   private static Connection conn = null;
 
     private ConnectionUtil() {
 
