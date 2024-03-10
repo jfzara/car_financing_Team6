@@ -1,0 +1,103 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -2,6 +2,7 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Correction des conflits pour merge">
++      <change afterPath="$PROJECT_DIR$/src/FormFinancement.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -42,12 +43,15 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0"
+   }
+-}</component>
++}]]></component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+Index: src/FormFinancement.java
+===================================================================
+diff --git a/src/FormFinancement.java b/src/FormFinancement.java
+new file mode 100644
+--- /dev/null	
++++ b/src/FormFinancement.java	
+@@ -0,0 +1,59 @@
++public class FormFinancement{
++    private String VIN;
++    private double montantPret;
++    private int dureePret;
++
++    // Constructeur
++    public FormFinancement(String VIN, double montantPret, int dureePret) {
++        this.VIN = VIN;
++        this.montantPret = montantPret;
++        this.dureePret = dureePret;
++    }
++
++    // Getters et setters
++    public String getVIN() {
++        return VIN;
++    }
++
++    public void setVIN(String VIN) {
++        this.VIN = VIN;
++    }
++
++    public double getMontantPret() {
++        return montantPret;
++    }
++
++    public void setMontantPret(double montantPret) {
++        this.montantPret = montantPret;
++    }
++
++    public int getDureePret() {
++        return dureePret;
++    }
++
++    public void setDureePret(int dureePret) {
++        this.dureePret = dureePret;
++    }
++
++    // Méthode pour valider le formulaire
++    public boolean validateForm() {
++        // Validation du champ VIN
++        if (VIN == null || VIN.length() != 17) {
++            System.out.println("Le numéro d'identification du véhicule (VIN) doit contenir exactement 17 caractères.");
++            return false;
++        }
++
++        // Validation du montant du prêt
++        if (montantPret <= 0 || montantPret > 60000) {
++            System.out.println("Le montant du prêt désiré doit être compris entre 1 et 60 000 $.");
++            return false;
++        }
++
++        // Validation de la durée du prêt
++        if (dureePret <= 0 || dureePret > 4) {
++            System.out.println("La durée du prêt doit être comprise entre 1 et 4 ans.");
++            return false;
++        }
++        return true; // Par défaut, retourne true
++    }
++}
