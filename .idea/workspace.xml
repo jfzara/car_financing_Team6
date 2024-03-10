@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Ajout de la classe FinancingStatus">
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Update de la structure du projet (DAO/MVC)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709990812420</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update de la structure du projet (DAO/MVC)">
+      <created>1710086009047</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710086009047</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +125,7 @@
     <MESSAGE value="Rajout des classes Client, Investisseur,  Formulaire Inscription reste FormConnexion" />
     <MESSAGE value="Rajout de FormConnexion" />
     <MESSAGE value="Ajout de la classe FinancingStatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la classe FinancingStatus" />
+    <MESSAGE value="Update de la structure du projet (DAO/MVC)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update de la structure du projet (DAO/MVC)" />
   </component>
 </project>
