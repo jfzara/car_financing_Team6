@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Rajout de FormConnexion">
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Ajout de la classe FinancingStatus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709745042304</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajout de la classe FinancingStatus">
+      <created>1709990812420</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709990812420</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,6 +118,7 @@
     <MESSAGE value="creation de la branche FormFinancement" />
     <MESSAGE value="Rajout des classes Client, Investisseur,  Formulaire Inscription reste FormConnexion" />
     <MESSAGE value="Rajout de FormConnexion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rajout de FormConnexion" />
+    <MESSAGE value="Ajout de la classe FinancingStatus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la classe FinancingStatus" />
   </component>
 </project>

@@ -1,6 +1,16 @@
+import view.PagePrincipale;
+
+import view.PostgresSQLConfig;
+
 public class Main {
     public static void main(String[] args) {
-        FormInscription formInscription = new FormInscription();
-        formInscription.show();
+
+        PostgresSQLConfig.initializeDatabase();
+
+
+
+
+        PagePrincipale pagePrincipale = new PagePrincipale();
+        pagePrincipale.afficherGUI();
     }
 }
