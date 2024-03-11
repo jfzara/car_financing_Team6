@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-
 public class PagePrincipale {
 
     public static void main(String[] args) {
@@ -39,6 +36,7 @@ public class PagePrincipale {
             }
         });
         panel.add(boutonInscription);
+
         // Création et ajout du bouton connexion
         JButton boutonConnexion = creerBouton("Connexion");
         boutonConnexion.addActionListener(new ActionListener() {
@@ -49,12 +47,19 @@ public class PagePrincipale {
             }
         });
         panel.add(boutonConnexion);
+
         JButton boutonStatusDemande = creerBouton("Statut demande de financement");
         boutonStatusDemande.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Afficher la vue FinancingStatus
-                new FinancingStatus().setVisible(true);
+                FinancingStatus financingStatus = new FinancingStatus();
+                // Mettre à jour les informations du véhicule comme des placeholders
+                financingStatus.setBrand("Marque : Toyota");
+                financingStatus.setModel("Modèle : Camry");
+                financingStatus.setYear(2020);
+                financingStatus.setMileage(50000);
+                financingStatus.setVisible(true);
             }
         });
         panel.add(boutonStatusDemande);
