@@ -71,7 +71,21 @@ public class FinancingStatus extends JFrame {
 
     // Méthode pour gérer le clic sur le bouton "Modifier la demande"
     private void handleModifyButtonClick() {
-        // Implémenter la logique pour modifier la demande
+        String vin = "";
+        int loanAmount = 0;
+        int loanDuration = 0;
+        int mileage = 0;
+        boolean isUsedCar = false;
+
+        boolean isValidVIN = validateVIN(vin);
+        boolean isValidLoanAmount = validateLoanAmount(loanAmount);
+        boolean isValidLoanDuration = validateLoanDuration(loanDuration);
+        boolean isValidMileage = validateMileage(mileage, isUsedCar);
+
+        if (!isValidVIN) JOptionPane.showMessageDialog(this, "Le VIN doit contenir exactement 17 caractères.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        if (!isValidLoanAmount) JOptionPane.showMessageDialog(this, "Le montant du prêt ne peut excéder 60 000 $.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        if (!isValidLoanDuration) JOptionPane.showMessageDialog(this, "La durée du prêt ne peut être supérieure à 4 ans.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        if (!isValidMileage) JOptionPane.showMessageDialog(this, "Le kilométrage pour un véhicule d'occasion ne doit pas dépasser 230 000.", "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
     // Méthode pour gérer le clic sur le bouton "Retour"
