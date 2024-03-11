@@ -41,41 +41,77 @@ public class FinancingStatus extends JFrame {
         add(modifyButton);
         add(returnButton);
 
+        // Ajout des listeners aux boutons
+        modifyButton.addActionListener(e -> handleModifyButtonClick());
+        returnButton.addActionListener(e -> handleReturnButtonClick());
+
         // Affichage de la fenêtre
         setVisible(true);
     }
 
+    // Méthode pour valider le champ VIN
+    private boolean validateVIN(String vin) {
+        return vin.length() == 17;
+    }
+
+    // Méthode pour valider le montant du prêt désiré
+    private boolean validateLoanAmount(int amount) {
+        return amount <= 60000;
+    }
+
+    // Méthode pour valider la durée du prêt
+    private boolean validateLoanDuration(int duration) {
+        return duration <= 4;
+    }
+
+    // Méthode pour valider le kilométrage
+    private boolean validateMileage(int mileage, boolean isUsedCar) {
+        return !isUsedCar || mileage <= 230000;
+    }
+
+    // Méthode pour gérer le clic sur le bouton "Modifier la demande"
+    private void handleModifyButtonClick() {
+        // Implémenter la logique pour modifier la demande
+    }
+
+    // Méthode pour gérer le clic sur le bouton "Retour"
+    private void handleReturnButtonClick() {
+        // Implémenter la logique pour retourner au menu principal
+    }
+
     // Méthodes pour mettre à jour les informations affichées dans la vue
+
+    // Méthode pour mettre à jour la marque du véhicule
     public void setBrand(String brand) {
         brandLabel.setText("Marque : " + brand);
     }
 
-    // Méthode pour mettre à jour le modèle
+    // Méthode pour mettre à jour le modèle du véhicule
     public void setModel(String model) {
         modelLabel.setText("Modèle : " + model);
     }
 
-    // Méthode pour mettre à jour l'année
+    // Méthode pour mettre à jour l'année du véhicule
     public void setYear(int year) {
         yearLabel.setText("Année : " + year);
     }
 
-    // Méthode pour mettre à jour le kilométrage
+    // Méthode pour mettre à jour le kilométrage du véhicule
     public void setMileage(int mileage) {
         mileageLabel.setText("Kilométrage : " + mileage);
     }
 
-    // Méthode pour mettre à jour le statut
+    // Méthode pour mettre à jour le statut de la demande de financement
     public void setStatus(String status) {
         statusLabel.setText("Statut : " + status);
     }
 
-    // Méthode pour mettre à jour la barre de progression
+    // Méthode pour mettre à jour la barre de progression de la demande de financement
     public void setProgress(int progress) {
         progressBar.setValue(progress);
     }
 
-    // Méthodes pour activer/désactiver les boutons
+    // Méthodes pour activer ou désactiver le bouton de modification de la demande
     public void enableModifyButton() {
         modifyButton.setEnabled(true);
     }
@@ -84,9 +120,8 @@ public class FinancingStatus extends JFrame {
         modifyButton.setEnabled(false);
     }
 
-    // Méthode pour ajouter un gestionnaire d'événements au bouton de retour
+    // Méthode pour ajouter un écouteur d'événements au bouton de retour
     public void addReturnButtonListener(ActionListener listener) {
         returnButton.addActionListener(listener);
     }
 }
-

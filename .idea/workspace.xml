@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Fixé erreur &quot;missing package statement&quot; dans FinancingStatus.java">
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Inclusion du dossier Photos pour l interface (Page principale)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FinancingStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FinancingStatus.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710100379376</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Inclusion du dossier Photos pour l interface (Page principale)">
+      <created>1710106883101</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710106883101</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +172,7 @@
     <MESSAGE value="Fixé erreur &quot;missing pacakage statement &quot; (package DAO dans InvestisseurDAOImpl.java)" />
     <MESSAGE value="Fixé erreur &quot;missing package statement &quot; (package DAO dans InvestisseurDAOImpl.java)" />
     <MESSAGE value="Fixé erreur &quot;missing package statement&quot; dans FinancingStatus.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixé erreur &quot;missing package statement&quot; dans FinancingStatus.java" />
+    <MESSAGE value="Inclusion du dossier Photos pour l interface (Page principale)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inclusion du dossier Photos pour l interface (Page principale)" />
   </component>
 </project>
