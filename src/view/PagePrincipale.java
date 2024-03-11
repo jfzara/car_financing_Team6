@@ -49,7 +49,7 @@ public class PagePrincipale {
             }
         });
         panel.add(boutonConnexion);
-        JButton boutonStatusDemande = creerBouton("Status demande de financement");
+        JButton boutonStatusDemande = creerBouton("Statut demande de financement");
         boutonStatusDemande.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

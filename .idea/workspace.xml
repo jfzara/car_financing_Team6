@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Mise a jour de la classe FinancingStatus suite a la mise a jour de l 'énoncé'">
-      <change beforePath="$PROJECT_DIR$/src/view/FinancingStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FinancingStatus.java" afterDir="false" />
-    </list>
+    <list default="true" id="897b28fa-109f-42db-84e2-f7beb103c071" name="Changes" comment="Ajout des messages d'erreur dans le formulaire FinancingStatus.java" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710165674727</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Ajout des messages d'erreur dans le formulaire FinancingStatus.java">
+      <created>1710165931878</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1710165931878</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +185,8 @@
     <MESSAGE value="Fixé erreur &quot;missing package statement&quot; dans FinancingStatus.java" />
     <MESSAGE value="Inclusion du dossier Photos pour l interface (Page principale)" />
     <MESSAGE value="Mise a jour de la classe FinancingStatus suite a la mise a jour de l 'énoncé'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise a jour de la classe FinancingStatus suite a la mise a jour de l 'énoncé'" />
+    <MESSAGE value="Ajout des messages d'erreur dans le formulaire FinancingStatus" />
+    <MESSAGE value="Ajout des messages d'erreur dans le formulaire FinancingStatus.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des messages d'erreur dans le formulaire FinancingStatus.java" />
   </component>
 </project>
