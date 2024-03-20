@@ -1,14 +1,15 @@
 
-
+package DAO;
 import modele.Investisseur;
-import com.logic.util.ConnectionUtil;
+
 import modele.Investisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import DAO.InvestisseurDao;
+import util.ConnectionUtil;
 public class InvestisseurDaoImpl implements InvestisseurDao {
 
     @Override
@@ -16,11 +17,11 @@ public class InvestisseurDaoImpl implements InvestisseurDao {
 
         Connection conn = ConnectionUtil.getConnection();
 
-        // Requête SQL pour insérer un nouvel investisseur
+
         String sql = "INSERT INTO investisseur (fullName, email, password, phoneNumber, bankName, bankAccountDetails, investorRiskLevel, investorEducationLevel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            // Remplissez les paramètres de la requête
+
             stmt.setString(1, investisseur.getFullName());
             stmt.setString(2, investisseur.getEmail());
             stmt.setString(3, investisseur.getPassword());

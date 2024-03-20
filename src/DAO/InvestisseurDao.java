@@ -1,5 +1,5 @@
 
-
+package DAO;
 import modele.Investisseur;
 
 @FunctionalInterface

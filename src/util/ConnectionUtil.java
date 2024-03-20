@@ -1,5 +1,4 @@
-
-package com.logic.util;
+package util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +9,7 @@ import java.util.Properties;
 
 public class ConnectionUtil {
 
-   private static Connection conn = null;
+    private static Connection conn = null;
 
     private ConnectionUtil() {
 
@@ -25,20 +24,15 @@ public class ConnectionUtil {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
 
         try {
-
             Properties prop = loadDatabaseProperties();
-
             conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
             System.out.println("Established Connection to Database!");
-
         } catch (SQLException e) {
             System.out.println("Cannot establish connection");
             e.printStackTrace();
-
             throw new RuntimeException("Failed to establish database connection", e);
         }
 

@@ -3,16 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.FinanceStatus;
+public class PagePrincipale extends JFrame {
 
-import view.FormInscription;
 
-
-
-public class PagePrincipale {
-
-    public static void main(String[] args) {
-        afficherGUI();
-    }
 
     public static void afficherGUI() {
         // Création de la fenêtre principale avec un titre
@@ -40,6 +34,7 @@ public class PagePrincipale {
             }
         });
         panel.add(boutonInscription);
+
         // Création et ajout du bouton connexion
         JButton boutonConnexion = creerBouton("Connexion");
         boutonConnexion.addActionListener(new ActionListener() {
@@ -51,6 +46,21 @@ public class PagePrincipale {
         });
         panel.add(boutonConnexion);
 
+        JButton boutonStatusDemande = creerBouton("Statut demande de financement");
+        boutonStatusDemande.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Afficher la vue FinancingStatus
+                FinanceStatus financingStatus = new FinanceStatus();
+                // Mettre à jour les informations du véhicule comme des placeholders
+                financingStatus.setBrand("Marque : Toyota");
+                financingStatus.setModel("Modèle : Camry");
+                financingStatus.setYear(2020);
+                financingStatus.setMileage(50000);
+                financingStatus.setVisible(true);
+            }
+        });
+        panel.add(boutonStatusDemande);
         // Ajout du panel à la fenêtre principale et affichage
         fenetrePrincipale.add(panel);
         fenetrePrincipale.setLocationRelativeTo(null); // Centrage de la fenêtre

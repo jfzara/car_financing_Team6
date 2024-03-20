@@ -1,14 +1,10 @@
 package DAO;
 import modele.Client;
 
-import modele.Investisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import view.PostgresSQLConfig;
-import view.PasswordHashing;
 import view.PasswordUtils;
 
 public class ClientDao {

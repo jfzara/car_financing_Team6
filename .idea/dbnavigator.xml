@@ -27,7 +27,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/database-tool/76e33d50-c9b1-4d03-b78c-5eaa14029d5e/console.sql" connection-id="e7508d72-88e1-4a37-8fc4-793364541446" session-id="MAIN" current-schema="postgres" />
+    <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/database-tool/76e33d50-c9b1-4d03-b78c-5eaa14029d5e/console.sql" connection-id="e7508d72-88e1-4a37-8fc4-793364541446" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
