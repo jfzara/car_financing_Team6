@@ -26,7 +26,7 @@ public class FormInscription extends JFrame {
         setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JPanel formPanel = new JPanel(new GridLayout(0, 2, 5, 5)); // Use GridLayout for even distribution
+        JPanel formPanel = new JPanel(new GridLayout(0, 2, 5, 5));
 
         userTypeComboBox = new JComboBox<>(new String[]{"", "Client", "Investisseur"});
         formPanel.add(new JLabel("Type d'utilisateur:"));

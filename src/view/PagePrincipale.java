@@ -11,8 +11,8 @@ public class PagePrincipale extends JFrame {
     public static void afficherGUI() {
         // Création de la fenêtre principale avec un titre
         JFrame fenetrePrincipale = new JFrame("Financement Automobile");
-        fenetrePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fermeture de l'application à la fermeture
-        fenetrePrincipale.setSize(600, 400); // Définition de la taille de la fenêtre
+        fenetrePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetrePrincipale.setSize(600, 400);
 
         // Création du panel avec une image de fond
         Panel panel = new Panel("photo/voiture1.jpg");
@@ -23,7 +23,7 @@ public class PagePrincipale extends JFrame {
         panel.add(creerLabel("<html>Financement Automobile vous offre des solutions de financement simples et adaptées à vos besoins. Que ce soit pour une voiture neuve ou d'occasion, bénéficiez de nos taux avantageux et d'un service rapide. Faites confiance à nous pour financer facilement la voiture de vos choix.</html>", 16));
         panel.add(creerLabel("Contactez-nous : contact@financementXYZ.com", 14));
         panel.add(creerLabel("Téléphone : 123-456 789", 14));
-        panel.add(Box.createRigidArea(new Dimension(0, 10))); // Ajoute un espace entre les composants
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Création et ajout du bouton d'inscription
         JButton boutonInscription = creerBouton("Inscription");

@@ -95,7 +95,7 @@ public class InvestmentPage extends JFrame {
             double currentBalance = PostgresSQLConfig.getCurrentBalance(userId);
             if (amount <= currentBalance) {
                 PostgresSQLConfig.updateInvestment(userId, -amount);
-                loadUserData(); // Recharger les données utilisateur
+                loadUserData();
             } else {
                 JOptionPane.showMessageDialog(this, "Solde insuffisant pour le retrait.", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
