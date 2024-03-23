@@ -33,6 +33,29 @@ public class InvestmentPage extends JFrame {
         currentBalanceLabel = new JLabel("Calcul en cours...");
         infoPanel.add(currentBalanceLabel);
 
+        // Ajout des nouveaux champs pour le formulaire d'investissement
+        infoPanel.add(new JLabel("Montant à investir :"));
+        JTextField investAmountField = new JTextField();
+        infoPanel.add(investAmountField);
+
+        infoPanel.add(new JLabel("Nom de la banque :"));
+        JTextField bankNameField = new JTextField();
+        infoPanel.add(bankNameField);
+
+        infoPanel.add(new JLabel("Numéro de transit :"));
+        JTextField transitNumberField = new JTextField();
+        infoPanel.add(transitNumberField);
+
+        infoPanel.add(new JLabel("Numéro d'institution :"));
+        JTextField institutionNumberField = new JTextField();
+        infoPanel.add(institutionNumberField);
+
+        infoPanel.add(new JLabel("Numéro de compte :"));
+        JTextField accountNumberField = new JTextField();
+        infoPanel.add(accountNumberField);
+
+
+
         transactionsArea = new JTextArea(10, 30);
         transactionsArea.setEditable(false);
 
@@ -49,6 +72,8 @@ public class InvestmentPage extends JFrame {
         buttonPanel.add(withdrawButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+
+
     }
 
     private void loadUserData() {
