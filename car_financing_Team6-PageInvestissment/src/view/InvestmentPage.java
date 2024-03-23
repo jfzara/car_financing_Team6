@@ -74,7 +74,7 @@ public class InvestmentPage extends JFrame {
         JTextField institutionNumberField = new JTextField();
         JTextField accountNumberField = new JTextField();
 
-        investPanel.add(new JLabel("Montant à investir :"));
+        investPanel.add(new JLabel("Montant à investir (CA$):"));
         investPanel.add(investAmountField);
         investPanel.add(new JLabel("Nom de la banque :"));
         investPanel.add(bankNameField);
@@ -100,20 +100,38 @@ public class InvestmentPage extends JFrame {
                 try {
                     double amount = Double.parseDouble(inputAmount);
                     if (amount < 100) {
-                        JOptionPane.showMessageDialog(this, "Le montant minimum autorisé est de 100$", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Le montant minimum autorisé est de 100$", "Erreur", JOptionPane.ERROR_MESSAGE);
                         return; // Arrêter le traitement en cas d'erreur
                     }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     return; // Arrêter le traitement en cas d'erreur
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un montant à investir.", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Veuillez entrer un montant à investir.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 return; // Arrêter le traitement en cas d'erreur
             }
 
             // Vérification des autres champs (nom de la banque, numéro de transit, etc.)
-            // Ajouter des vérifications similaires pour chaque champ avec des messages d'erreur appropriés
+            if (bankName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Veuillez entrer le nom de la banque.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (transitNumber.isEmpty() || !transitNumber.matches("\\d{5}")) {
+                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro de transit valide (5 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (institutionNumber.isEmpty() || !institutionNumber.matches("\\d{3}")) {
+                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro d'institution valide (3 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (accountNumber.isEmpty() || !accountNumber.matches("\\d{8}")) {
+                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro de compte valide (8 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             // Si toutes les vérifications sont réussies, effectuer l'investissement
             try {
