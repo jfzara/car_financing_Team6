@@ -33,29 +33,6 @@ public class InvestmentPage extends JFrame {
         currentBalanceLabel = new JLabel("Calcul en cours...");
         infoPanel.add(currentBalanceLabel);
 
-        // Ajout des nouveaux champs pour le formulaire d'investissement
-        infoPanel.add(new JLabel("Montant à investir :"));
-        JTextField investAmountField = new JTextField();
-        infoPanel.add(investAmountField);
-
-        infoPanel.add(new JLabel("Nom de la banque :"));
-        JTextField bankNameField = new JTextField();
-        infoPanel.add(bankNameField);
-
-        infoPanel.add(new JLabel("Numéro de transit :"));
-        JTextField transitNumberField = new JTextField();
-        infoPanel.add(transitNumberField);
-
-        infoPanel.add(new JLabel("Numéro d'institution :"));
-        JTextField institutionNumberField = new JTextField();
-        infoPanel.add(institutionNumberField);
-
-        infoPanel.add(new JLabel("Numéro de compte :"));
-        JTextField accountNumberField = new JTextField();
-        infoPanel.add(accountNumberField);
-
-
-
         transactionsArea = new JTextArea(10, 30);
         transactionsArea.setEditable(false);
 
@@ -72,11 +49,6 @@ public class InvestmentPage extends JFrame {
         buttonPanel.add(withdrawButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
-
-        infoPanel.add(new JLabel("Montant à retirer :"));
-        JTextField withdrawAmountField = new JTextField();
-        infoPanel.add(withdrawAmountField);
-
     }
 
     private void loadUserData() {
@@ -94,12 +66,59 @@ public class InvestmentPage extends JFrame {
     }
 
     private void invest(ActionEvent e) {
-        String input = JOptionPane.showInputDialog(this, "Montant à investir :");
-        if (input != null && !input.isEmpty()) {
+        // Créer le panneau pour le formulaire d'investissement avec les détails bancaires
+        JPanel investPanel = new JPanel(new GridLayout(5, 2));
+        JTextField investAmountField = new JTextField();
+        JTextField bankNameField = new JTextField();
+        JTextField transitNumberField = new JTextField();
+        JTextField institutionNumberField = new JTextField();
+        JTextField accountNumberField = new JTextField();
+
+        investPanel.add(new JLabel("Montant à investir :"));
+        investPanel.add(investAmountField);
+        investPanel.add(new JLabel("Nom de la banque :"));
+        investPanel.add(bankNameField);
+        investPanel.add(new JLabel("Numéro de transit :"));
+        investPanel.add(transitNumberField);
+        investPanel.add(new JLabel("Numéro d'institution :"));
+        investPanel.add(institutionNumberField);
+        investPanel.add(new JLabel("Numéro de compte :"));
+        investPanel.add(accountNumberField);
+
+        // Afficher le formulaire dans une boîte de dialogue
+        int result = JOptionPane.showConfirmDialog(this, investPanel, "Formulaire d'Investissement", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            // Traitement lorsque l'utilisateur clique sur "OK"
+            String inputAmount = investAmountField.getText();
+            String bankName = bankNameField.getText();
+            String transitNumber = transitNumberField.getText();
+            String institutionNumber = institutionNumberField.getText();
+            String accountNumber = accountNumberField.getText();
+
+            // Vérification de la validité du montant à investir
+            if (!inputAmount.isEmpty()) {
+                try {
+                    double amount = Double.parseDouble(inputAmount);
+                    if (amount < 100) {
+                        JOptionPane.showMessageDialog(this, "Le montant minimum autorisé est de 100$", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                        return; // Arrêter le traitement en cas d'erreur
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                    return; // Arrêter le traitement en cas d'erreur
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Veuillez entrer un montant à investir.", "Erreur de validation", JOptionPane.ERROR_MESSAGE);
+                return; // Arrêter le traitement en cas d'erreur
+            }
+
+            // Vérification des autres champs (nom de la banque, numéro de transit, etc.)
+            // Ajouter des vérifications similaires pour chaque champ avec des messages d'erreur appropriés
+
+            // Si toutes les vérifications sont réussies, effectuer l'investissement
             try {
-                double amount = Double.parseDouble(input);
                 double oldBalance = PostgresSQLConfig.getCurrentBalance(userId);
-                PostgresSQLConfig.updateInvestment(userId, amount);
+                PostgresSQLConfig.updateInvestment(userId, Double.parseDouble(inputAmount));
                 double newBalance = PostgresSQLConfig.getCurrentBalance(userId);
 
                 if (newBalance != oldBalance) {
@@ -107,14 +126,11 @@ public class InvestmentPage extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Échec de l'opération.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un nombre valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Erreur lors de l'investissement : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
-
 
     private void withdraw(ActionEvent event) {
         String input = JOptionPane.showInputDialog(this, "Montant à retirer :");
