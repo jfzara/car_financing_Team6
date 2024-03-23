@@ -73,6 +73,9 @@ public class InvestmentPage extends JFrame {
 
         add(buttonPanel, BorderLayout.SOUTH);
 
+        infoPanel.add(new JLabel("Montant à retirer :"));
+        JTextField withdrawAmountField = new JTextField();
+        infoPanel.add(withdrawAmountField);
 
     }
 
