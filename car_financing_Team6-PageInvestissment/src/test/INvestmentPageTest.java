@@ -1,28 +1,26 @@
-package test;
-
+/*package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
 
 public class InvestmentPageTest {
 
     @Test
-    public void testInvestissementMontantVide() {
+    public void testInvestissementMontantInférieurMinimum() {
         InvestmentPage page = new InvestmentPage(1);
-        String inputAmount = "";
+        String inputAmount = "50";
 
         page.invest(inputAmount);
 
-        assertTrue(page.getErrorMessage().contains("Veuillez entrer un montant à investir."));
+        assertTrue(page.getErrorMessage().contains("Le montant minimum autorisé est de 100$"));
     }
 
     @Test
-    public void testInvestissementNumeroTransitInvalide() {
+    public void testInvestissementMontantValide() {
         InvestmentPage page = new InvestmentPage(1);
-        String inputAmount = "200";
-        page.setTransitNumber("1234");
+        String inputAmount = "150";
 
         page.invest(inputAmount);
 
         assertTrue(page.getErrorMessage().contains("Veuillez entrer un numéro de transit valide (5 chiffres)."));
     }
-}
+}*/

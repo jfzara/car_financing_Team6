@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class PostgresSQLConfig {
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String PASSWORD = "Ultranate2024";
 
     // Connexion à la base de données
     public static Connection connect() throws SQLException {
@@ -17,62 +17,52 @@ public class PostgresSQLConfig {
 
     // Initialisation de la base de données
     public static void initializeDatabase() {
-        String createInvestorsTable = """
-            CREATE TABLE IF NOT EXISTS investors (
-            id SERIAL PRIMARY KEY,
-            full_name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password_hash VARCHAR(255) NOT NULL,
-            salt VARCHAR(255) NOT NULL,
-            bank_name VARCHAR(255),
-            bank_account_details TEXT,
-            risk_level VARCHAR(50),
-            education_level VARCHAR(50),
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
-            """;
+        String createInvestorsTable = "CREATE TABLE IF NOT EXISTS investors (" +
+                "id SERIAL PRIMARY KEY," +
+                "full_name VARCHAR(255) NOT NULL," +
+                "email VARCHAR(255) UNIQUE NOT NULL," +
+                "password_hash VARCHAR(255) NOT NULL," +
+                "salt VARCHAR(255) NOT NULL," +
+                "bank_name VARCHAR(255)," +
+                "bank_account_details TEXT," +
+                "risk_level VARCHAR(50)," +
+                "education_level VARCHAR(50)," +
+                "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ")";
 
-        String createPortefeuillesTable = """
-            CREATE TABLE IF NOT EXISTS portefeuilles (
-            id SERIAL PRIMARY KEY,
-            investor_id INT NOT NULL,
-            nom VARCHAR(255) NOT NULL,
-            description TEXT,
-            FOREIGN KEY (investor_id) REFERENCES investors(id)
-            );
-            """;
+        String createPortefeuillesTable = "CREATE TABLE IF NOT EXISTS portefeuilles (" +
+                "id SERIAL PRIMARY KEY," +
+                "investor_id INT NOT NULL," +
+                "nom VARCHAR(255) NOT NULL," +
+                "description TEXT," +
+                "FOREIGN KEY (investor_id) REFERENCES investors(id)" +
+                ")";
 
-        String createActifsTable = """
-            CREATE TABLE IF NOT EXISTS actifs (
-            id SERIAL PRIMARY KEY,
-            nom VARCHAR(255) NOT NULL,
-            description TEXT
-            );
-            """;
+        String createActifsTable = "CREATE TABLE IF NOT EXISTS actifs (" +
+                "id SERIAL PRIMARY KEY," +
+                "nom VARCHAR(255) NOT NULL," +
+                "description TEXT" +
+                ")";
 
-        String createInvestissementsActifsTable = """
-            CREATE TABLE IF NOT EXISTS investissements_actifs (
-            id SERIAL PRIMARY KEY,
-            portefeuille_id INT NOT NULL,
-            actif_id INT NOT NULL,
-            montant_investi DECIMAL(10, 2) NOT NULL,
-            date_achat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (portefeuille_id) REFERENCES portefeuilles(id),
-            FOREIGN KEY (actif_id) REFERENCES actifs(id)
-            );
-            """;
+        String createInvestissementsActifsTable = "CREATE TABLE IF NOT EXISTS investissements_actifs (" +
+                "id SERIAL PRIMARY KEY," +
+                "portefeuille_id INT NOT NULL," +
+                "actif_id INT NOT NULL," +
+                "montant_investi DECIMAL(10, 2) NOT NULL," +
+                "date_achat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+                "FOREIGN KEY (portefeuille_id) REFERENCES portefeuilles(id)," +
+                "FOREIGN KEY (actif_id) REFERENCES actifs(id)" +
+                ")";
 
-        String createTransactionsTable = """
-            CREATE TABLE IF NOT EXISTS transactions (
-            id SERIAL PRIMARY KEY,
-            investor_id INT NOT NULL,
-            montant DECIMAL(10, 2) NOT NULL,
-            type VARCHAR(255) NOT NULL,
-            date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            description TEXT,
-            FOREIGN KEY (investor_id) REFERENCES investors(id)
-            );
-            """;
+        String createTransactionsTable = "CREATE TABLE IF NOT EXISTS transactions (" +
+                "id SERIAL PRIMARY KEY," +
+                "investor_id INT NOT NULL," +
+                "montant DECIMAL(10, 2) NOT NULL," +
+                "type VARCHAR(255) NOT NULL," +
+                "date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+                "description TEXT," +
+                "FOREIGN KEY (investor_id) REFERENCES investors(id)" +
+                ")";
 
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(createInvestorsTable);
@@ -102,7 +92,6 @@ public class PostgresSQLConfig {
         }
         return totalInvested;
     }
-
 
     // Ajoute une transaction pour un investisseur dans la table 'transactions'
     public static void addTransaction(int investorId, double montant, String type, String description) {
@@ -138,7 +127,6 @@ public class PostgresSQLConfig {
         }
         return transactions;
     }
-
 
     public static void createPortefeuille(int investorId, String nom, String description) {
         String sql = "INSERT INTO portefeuilles (investor_id, nom, description) VALUES (?, ?, ?);";
@@ -185,7 +173,18 @@ public class PostgresSQLConfig {
 
         return currentBalance;
     }
-
+    public static void updateInvestorBalance(int investorId, double amount) {
+        String sql = "UPDATE investors SET bank_account_details = ?, bank_name = ?, current_balance = current_balance + ? WHERE id = ?;";
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, "Your bank account details"); // Mettez à jour avec les détails de votre compte bancaire
+            pstmt.setString(2, "Your bank name"); // Mettez à jour avec le nom de votre banque
+            pstmt.setDouble(3, amount);
+            pstmt.setInt(4, investorId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         initializeDatabase();
 

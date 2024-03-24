@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import view.PostgresSQLConfig;
+import view.FormInvestissement;
 public class InvestmentPage extends JFrame {
 
     private JLabel totalInvestedLabel;
@@ -95,48 +96,20 @@ public class InvestmentPage extends JFrame {
             String institutionNumber = institutionNumberField.getText();
             String accountNumber = accountNumberField.getText();
 
-            // Vérification de la validité du montant à investir
-            if (!inputAmount.isEmpty()) {
-                try {
-                    double amount = Double.parseDouble(inputAmount);
-                    if (amount < 100) {
-                        JOptionPane.showMessageDialog(this, "Le montant minimum autorisé est de 100$", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        return; // Arrêter le traitement en cas d'erreur
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                    return; // Arrêter le traitement en cas d'erreur
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un montant à investir.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                return; // Arrêter le traitement en cas d'erreur
-            }
+            // Créer une instance de FormInvestissement
+            FormInvestissement formInvestissement = new FormInvestissement(Double.parseDouble(inputAmount), bankName, transitNumber, institutionNumber, accountNumber);
 
-            // Vérification des autres champs (nom de la banque, numéro de transit, etc.)
-            if (bankName.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer le nom de la banque.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (transitNumber.isEmpty() || !transitNumber.matches("\\d{5}")) {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro de transit valide (5 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (institutionNumber.isEmpty() || !institutionNumber.matches("\\d{3}")) {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro d'institution valide (3 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (accountNumber.isEmpty() || !accountNumber.matches("\\d{8}")) {
-                JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro de compte valide (8 chiffres).", "Erreur", JOptionPane.ERROR_MESSAGE);
+            // Vérification de la validité des informations sur l'investissement
+            if (!formInvestissement.isValid()) {
+                JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Si toutes les vérifications sont réussies, effectuer l'investissement
             try {
                 double oldBalance = PostgresSQLConfig.getCurrentBalance(userId);
-                PostgresSQLConfig.updateInvestment(userId, Double.parseDouble(inputAmount));
+                PostgresSQLConfig.updateInvestment(userId, formInvestissement.getMontantInvestissement());
+                PostgresSQLConfig.updateInvestorBalance(userId, formInvestissement.getMontantInvestissement()); // Mettre à jour le solde de l'investisseur
                 double newBalance = PostgresSQLConfig.getCurrentBalance(userId);
 
                 if (newBalance != oldBalance) {
