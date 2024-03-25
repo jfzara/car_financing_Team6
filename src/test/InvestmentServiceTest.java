@@ -20,7 +20,7 @@ public class InvestmentServiceTest {
         double expectedNewBalance = 2500.0;
 
 
-        // Cretourner le nouveau solde après l'ajout du montant de l'investissement.
+        //  le nouveau solde après l'ajout du montant de l'investissement.
         double newBalance = service.addInvestmentToBalance(currentBalance, investmentAmount);
 
         assertEquals(expectedNewBalance, newBalance, "Le nouveau solde après investissement devrait être correct.");
