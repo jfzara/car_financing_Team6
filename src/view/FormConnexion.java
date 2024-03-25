@@ -89,5 +89,8 @@ public class FormConnexion extends JFrame {
         }
         return false;
     }
-
+    public boolean checkPassword(String password, String storedPasswordHash) {
+        // Implémentation de la logique de vérification du mot de passe
+        return password.equals(storedPasswordHash);
+    }
 }

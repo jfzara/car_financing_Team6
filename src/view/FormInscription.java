@@ -163,5 +163,18 @@ public class FormInscription extends JFrame {
         }
     }
 
+    public boolean validateInputFields(String email, String password, JTextField[] fields) {
+        // Vérifie que l'email et le mot de passe ne sont pas vides
+        if (email.isEmpty() || password.isEmpty()) {
+            return false;
+        }
+        // Vérifie que les autres champs requis ne sont pas vides
+        for (JTextField field : fields) {
+            if (field.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

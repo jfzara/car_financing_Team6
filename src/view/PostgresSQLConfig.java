@@ -104,7 +104,6 @@ public class PostgresSQLConfig {
     }
 
 
-    // Ajoute une transaction pour un investisseur dans la table 'transactions'
     public static void addTransaction(int investorId, double montant, String type, String description) {
         String sql = "INSERT INTO transactions (investor_id, montant, type, date, description) VALUES (?, ?, ?, NOW(), ?);";
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -118,10 +117,10 @@ public class PostgresSQLConfig {
         }
     }
 
-    // Obtient la liste des transactions pour un investisseur
     public static List<String> getTransactions(int investorId) {
         List<String> transactions = new ArrayList<>();
-        String sql = "SELECT montant, type, date, description FROM transactions WHERE investor_id = ? ORDER BY date DESC;";
+
+        String sql = "SELECT montant, type, date, description, nombanque, numeroTransit, numeroInstitution, numeroCompte FROM transactions WHERE investor_id = ? ORDER BY date DESC;";
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, investorId);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -130,7 +129,14 @@ public class PostgresSQLConfig {
                     String type = rs.getString("type");
                     Timestamp date = rs.getTimestamp("date");
                     String description = rs.getString("description");
-                    transactions.add(String.format("%s - %s$ - %s (%s)", date, montant, type, description));
+
+                    String nombanque = rs.getString("nombanque");
+                    String numeroTransit = rs.getString("numeroTransit");
+                    String numeroInstitution = rs.getString("numeroInstitution");
+                    String numeroCompte = rs.getString("numeroCompte");
+
+                    transactions.add(String.format("%s - %s$ - %s (%s) - Banque: %s, Transit: %s, Institution: %s, Compte: %s",
+                            date, montant, type, description, nombanque, numeroTransit, numeroInstitution, numeroCompte));
                 }
             }
         } catch (SQLException e) {
@@ -138,6 +144,7 @@ public class PostgresSQLConfig {
         }
         return transactions;
     }
+
 
 
     public static void createPortefeuille(int investorId, String nom, String description) {
@@ -184,6 +191,57 @@ public class PostgresSQLConfig {
         }
 
         return currentBalance;
+    }
+    public static void prepareTestData() {
+
+        try (Connection conn = connect()) {
+            String sql = "INSERT INTO users (user_type, email, password) VALUES (?, ?, ?) ON CONFLICT (email) DO NOTHING;";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, "investors");
+                pstmt.setString(2, "pp");
+                pstmt.setString(3, "pp");
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void cleanTestData() {
+        try (Connection conn = connect()) {
+
+            try (PreparedStatement pstmt = conn.prepareStatement("DELETE FROM transactions WHERE description = ?;")) {
+                pstmt.setString(1, "Test investissement");
+                pstmt.executeUpdate();
+            }
+
+            try (PreparedStatement pstmt = conn.prepareStatement("DELETE FROM investors WHERE email = ?;")) {
+                pstmt.setString(1, "pp");
+                pstmt.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void updateInvestmentWithBankDetails(int investorId, double amount, String bankName, String transitNumber, String institutionNumber, String accountNumber) {
+        String sql = "INSERT INTO transactions (investor_id, montant, type, date, description, nombanque, numeroTransit, numeroInstitution, numeroCompte) VALUES (?, ?, ?, NOW(), ?, ?, ?, ?, ?);";
+
+        String type = amount >= 0 ? "Investissement" : "Retrait";
+        String description = type + " de " + Math.abs(amount);
+
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, investorId);
+            pstmt.setDouble(2, amount);
+            pstmt.setString(3, type);
+            pstmt.setString(4, description);
+            pstmt.setString(5, bankName);
+            pstmt.setString(6, transitNumber);
+            pstmt.setString(7, institutionNumber);
+            pstmt.setString(8, accountNumber);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
