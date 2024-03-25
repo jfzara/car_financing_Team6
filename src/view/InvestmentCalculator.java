@@ -1,4 +1,4 @@
-package view;
+/*package view;
 
 public class InvestmentCalculator {
 
@@ -6,4 +6,4 @@ public class InvestmentCalculator {
         return amount * Math.pow(1 + rate, years) - amount;
     }
 
-}
+}*/

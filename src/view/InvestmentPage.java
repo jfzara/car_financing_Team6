@@ -194,6 +194,14 @@ public class InvestmentPage extends JFrame {
             JOptionPane.showMessageDialog(this, "Erreur lors du retrait : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public boolean validateInvestmentAmount(String amountInput) {
+        try {
+            double amount = Double.parseDouble(amountInput);
+            return amount >= 100;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     public static void main (String[]args){
         SwingUtilities.invokeLater(() -> {
